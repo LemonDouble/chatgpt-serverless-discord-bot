@@ -1,0 +1,8 @@
+{
+  "name": "chatgpt-serverless-discord-bot",
+  "version": "1.0.0",
+  "main": "handler.js",
+  "repository": "https://github.com/LemonDouble/chatgpt-serverless-discord-bot.git",
+  "author": "lemondouble",
+  "license": "MIT"
+}
