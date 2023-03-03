@@ -4,6 +4,12 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs18.x
+  region: ap-northeast-1
+
+
+plugin:
+  - serverless-plugin-typescript
+  - serverless-dotenv-plugin
 
 functions:
   api:
@@ -12,3 +18,7 @@ functions:
       - httpApi:
           path: /
           method: get
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-dotenv-plugin

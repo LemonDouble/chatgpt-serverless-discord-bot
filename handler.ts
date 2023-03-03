@@ -1,4 +1,6 @@
-module.exports.handler = async (event) => {
+import {APIGatewayEvent} from "aws-lambda";
+
+export const handle = async (event : APIGatewayEvent) => {
   return {
     statusCode: 200,
     body: JSON.stringify(
