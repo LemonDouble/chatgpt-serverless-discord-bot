@@ -17,7 +17,7 @@ functions:
     events:
       - httpApi:
           path: /
-          method: get
+          method: any
 
 plugins:
   - serverless-plugin-typescript
