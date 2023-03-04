@@ -6,6 +6,7 @@
   "author": "lemondouble",
   "license": "MIT",
   "scripts": {
+    "register" : "ts-node register.ts",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },
