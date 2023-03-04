@@ -5,6 +5,7 @@ provider:
   name: aws
   runtime: nodejs18.x
   region: ap-northeast-1
+  architecture: arm64 # ARM이 X86보다 조금이라도 쌉니다..
 
 
 plugin:
