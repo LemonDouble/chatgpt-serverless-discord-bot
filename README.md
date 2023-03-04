@@ -90,3 +90,47 @@
   
 **8. 완료**
 - `/질문` 커맨드를 이용하여 ChatGPT와 대화해 보세요!
+
+### FAQ
+
+- **프롬프트를 수정하고 싶어요!**
+  - src/openai.ts 에 들어가서, `generatePrompt` 내부의 글자를 수정합니다. 이 때, Question은 유저가 입력한 값입니다.
+  - 기본값으론, 예를 들어 유저가 "안녕" 이라고 입력했다면 ChatGPT에게는 다음과 같이 전달됩니다.
+    ```
+    너는 디스코드에서 운영되고 있는 봇이야.
+    너는 가능한 한 친절하게 대답해야 해.
+    이 질문에 대해 답해봐.
+    질문 : 안녕
+    ```
+  - 수정을 완료했다면, `serverless deploy`를 입력하여 서버를 업데이트합니다.
+- **슬래시 커맨드를 수정하고 싶어요!**
+  - src/commands.ts에 들어가서, AVAILABLE_COMMANDS 를 수정합니다. **설정 방법** 의 슬래시 커맨드 등록 부분과 비교하며 글자를 수정해 보세요.
+  - 이후 `yarn register`를 입력하여, 수정된 Slash Command를 등록합니다.
+  - 이후, 만약 "질문" 부분을 수정했다면 handler.ts를 수정한 커맨드에 맞게 수정해 줍니다.
+  ```
+  if (message.data.name === "질문") { // << 54번 라인의 이 부분
+  const question = message.data.options[0].value;
+  ```
+  - 이후 `serverless deploy` 를 입력하여 서버를 업데이트합니다.
+  - 더 자세한 커스터마이징을 원하면, 관련 문서를 참고해 주세요.
+  - 관련 문서 (Discord Interactions) : https://discord.com/developers/docs/interactions/receiving-and-responding
+- **애플리케이션이 응답하지 않았어요** 가 떠요!
+  - 서버 응답 시간이 한번씩 느려지면 그럴 수 있습니다.
+  - 별도로 문제가 있는 것은 아니니, 재시도하면 정상 작동합니다.
+
+### 프로젝트 구조
+
+```
+.
+├── README.md        # 지금 읽고 있는 이 파일입니다.
+├── handler.ts       # AWS Lambda가 Discord 서버로부터 요청을 받으면 실행되는 파일입니다. 내부의 handle 함수가 실행됩니다.
+├── package.json
+├── register.ts      # Discord Server에 Slash Command를 등록할 떄 실행되는 파일입니다.
+├── serverless.yml
+├── src
+│   ├── commands.ts  # 등록되는 Slash Command입니다. 
+│   ├── openai.ts    # OpenAI API를 사용하기 위한 파일입니다. generatePrompt 함수를 수정하여 프롬프트를 변경할 수 있습니다.
+│   └── util.ts      # 유틸 함수입니다.
+├── tsconfig.json
+└── yarn.lock
+```
