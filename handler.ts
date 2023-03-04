@@ -1,6 +1,6 @@
 import { type APIGatewayEvent, type APIGatewayProxyResult } from "aws-lambda";
 import nacl from "tweetnacl";
-import {InteractionType} from "discord-interactions";
+import { InteractionType } from "discord-interactions";
 
 export const handle = async (
   event: APIGatewayEvent
@@ -29,20 +29,23 @@ export const handle = async (
     };
   }
 
-  const parsedBody = JSON.parse(strBody)
-    console.log(`Request Body : ${parsedBody}`)
+  const parsedBody = JSON.parse(strBody);
+  console.log(`Request Body : ${parsedBody}`);
 
-    if (parsedBody.type == InteractionType.PING){
-        return {
-            statusCode : 200,
-            body : JSON.stringify({"type" : 1})
-        }
-    }
-
+  if (parsedBody.type === InteractionType.PING) {
     return {
-      statusCode: 500,
-      body : JSON.stringify({"error" : true, "message" : "Server Can't parse commands."})
-    }
+      statusCode: 200,
+      body: JSON.stringify({ type: 1 }),
+    };
+  }
+
+  return {
+    statusCode: 500,
+    body: JSON.stringify({
+      error: true,
+      message: "Server Can't parse commands.",
+    }),
+  };
 };
 
 const throwError = (message: string) => {
