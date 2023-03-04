@@ -1,6 +1,9 @@
 import { type APIGatewayEvent, type APIGatewayProxyResult } from "aws-lambda";
 import nacl from "tweetnacl";
 import { InteractionType } from "discord-interactions";
+import { throwError } from "./src/util";
+import { AVAILABLE_COMMANDS } from "./src/commands";
+import { getChatGptAnswer } from "./src/openai";
 
 export const handle = async (
   event: APIGatewayEvent
@@ -15,6 +18,7 @@ export const handle = async (
     event.headers["x-signature-timestamp"] ??
     throwError(`signature timestamp가 전달되지 않았습니다.`);
   const strBody = event.body ?? throwError(`Body가 전달되지 않았습니다.`);
+  console.log(`request body : ${strBody}`);
 
   const isVerified = nacl.sign.detached.verify(
     Buffer.from(timestamp + strBody),
@@ -25,29 +29,60 @@ export const handle = async (
   if (!isVerified) {
     return {
       statusCode: 401,
+      headers: {
+        "content-type": "application/json",
+      },
       body: JSON.stringify(`invalid request signature`),
     };
   }
 
-  const parsedBody = JSON.parse(strBody);
-  console.log(`Request Body : ${parsedBody}`);
+  const message = JSON.parse(strBody);
 
-  if (parsedBody.type === InteractionType.PING) {
+  if (message.type === InteractionType.PING) {
     return {
       statusCode: 200,
+      headers: {
+        "content-type": "application/json",
+      },
       body: JSON.stringify({ type: 1 }),
     };
   }
 
+  if (message.type === InteractionType.APPLICATION_COMMAND) {
+    switch (message.data.name) {
+      case AVAILABLE_COMMANDS.name: {
+        if (message.data.name === "질문") {
+          const question = message.data.options[0].value;
+
+          const answer = await getChatGptAnswer(question);
+
+          console.log(`question : ${question}, answer : ${answer}`);
+
+          return {
+            statusCode: 200,
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              type: 4,
+              data: {
+                content: `${answer}`,
+              },
+            }),
+          };
+        }
+      }
+    }
+  }
+
   return {
     statusCode: 500,
+    headers: {
+      "content-type": "application/json",
+    },
     body: JSON.stringify({
       error: true,
       message: "Server Can't parse commands.",
     }),
   };
-};
-
-const throwError = (message: string) => {
-  throw new Error(message);
 };
