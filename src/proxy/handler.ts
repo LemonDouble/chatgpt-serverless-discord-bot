@@ -1,9 +1,13 @@
 import { type APIGatewayEvent, type APIGatewayProxyResult } from "aws-lambda";
 import nacl from "tweetnacl";
-import { InteractionType } from "discord-interactions";
-import { throwError } from "./src/util";
-import { AVAILABLE_COMMANDS } from "./src/commands";
-import { getChatGptAnswer } from "./src/openai";
+import { InteractionResponseType, InteractionType } from "discord-interactions";
+import { throwError } from "../util";
+import { AVAILABLE_COMMANDS } from "../commands";
+import {
+  InvocationType,
+  InvokeCommand,
+  LambdaClient,
+} from "@aws-sdk/client-lambda";
 
 export const handle = async (
   event: APIGatewayEvent
@@ -52,22 +56,27 @@ export const handle = async (
     switch (message.data.name) {
       case AVAILABLE_COMMANDS.name: {
         if (message.data.name === "질문") {
-          const question = message.data.options[0].value;
-
-          const answer = await getChatGptAnswer(question);
-
-          console.log(`question : ${question}, answer : ${answer}`);
-
+          const client = new LambdaClient({});
+          await client.send(
+            new InvokeCommand({
+              FunctionName:
+                "chatgpt-serverless-discord-bot-dev-openai-response",
+              InvocationType: InvocationType.Event,
+              Payload: Buffer.from(
+                JSON.stringify({
+                  token: message.token,
+                  question: message.data.options[0].value,
+                })
+              ),
+            })
+          );
           return {
             statusCode: 200,
             headers: {
               "content-type": "application/json",
             },
             body: JSON.stringify({
-              type: 4,
-              data: {
-                content: `${answer}`,
-              },
+              type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
             }),
           };
         }

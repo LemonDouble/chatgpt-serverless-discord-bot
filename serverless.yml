@@ -5,20 +5,27 @@ provider:
   name: aws
   runtime: nodejs18.x
   region: ap-northeast-1
-  architecture: arm64 # ARM이 X86보다 조금이라도 쌉니다..
-
+  architecture: arm64 # ARM이 x86보다 조금이라도 싸서..
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "lambda:InvokeFunction"
+      Resource: '*'
 
 plugin:
   - serverless-plugin-typescript
   - serverless-dotenv-plugin
 
 functions:
-  api:
-    handler: handler.handle
+  proxy:
+    handler: src/proxy/handler.handle
     events:
       - httpApi:
           path: /
           method: any
+  openai-response:
+    handler: src/openai-response/handler.handle
+    timeout: 30 # OpenAI Response가 느린 경우도 있으므로 넉넉하게 설정
 
 plugins:
   - serverless-plugin-typescript
