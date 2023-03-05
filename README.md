@@ -94,7 +94,7 @@
 ### FAQ
 
 - **프롬프트를 수정하고 싶어요!**
-  - src/openai.ts 에 들어가서, `generatePrompt` 내부의 글자를 수정합니다. 이 때, Question은 유저가 입력한 값입니다.
+  - src/openai-response/openai.ts 에 들어가서, `generatePrompt` 내부의 글자를 수정합니다. 이 때, Question은 유저가 입력한 값입니다.
   - 기본값으론, 예를 들어 유저가 "안녕" 이라고 입력했다면 ChatGPT에게는 다음과 같이 전달됩니다.
     ```
     너는 디스코드에서 운영되고 있는 봇이야.
@@ -128,9 +128,21 @@
 ├── register.ts      # Discord Server에 Slash Command를 등록할 떄 실행되는 파일입니다.
 ├── serverless.yml
 ├── src
+│   ├── openai-response
+│   │   ├── handler.ts # proxy/handler.ts 에 의해 호출되는 함수입니다. OpenAI 서버와 통신 후 Discord 대화를 업데이트합니다.
+│   │   └── openai.ts # OpenAI API를 사용하기 위한 파일입니다. generatePrompt 함수를 수정하여 프롬프트를 변경할 수 있습니다.
+│   ├── proxy
+│   │   └── handler.ts # 요청을 받으면 openai-response/handler를 비동기적으로 호출 뒤, 바로 응답을 반환합니다.
 │   ├── commands.ts  # 등록되는 Slash Command입니다. 
-│   ├── openai.ts    # OpenAI API를 사용하기 위한 파일입니다. generatePrompt 함수를 수정하여 프롬프트를 변경할 수 있습니다.
 │   └── util.ts      # 유틸 함수입니다.
 ├── tsconfig.json
 └── yarn.lock
 ```
+
+![image](https://user-images.githubusercontent.com/31124212/222947308-df2a3b89-e9f2-490b-af39-2b6276d2a085.png)
+
+
+### 업데이트 노트
+
+* v0.0.1 : 기본 API 및 응답 구현
+* v0.1.1 : 3초 이상 걸리는 Response도 정상 응답 가능하도록, Multi Layer Architecture로 변경
