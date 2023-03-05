@@ -1,7 +1,7 @@
 {
   "name": "chatgpt-serverless-discord-bot",
   "version": "1.0.0",
-  "main": "handler.ts",
+  "main": "src/proxy/handler.ts",
   "repository": "https://github.com/LemonDouble/chatgpt-serverless-discord-bot.git",
   "author": "lemondouble",
   "license": "MIT",
