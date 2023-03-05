@@ -55,7 +55,7 @@ export const handle = async (
   if (message.type === InteractionType.APPLICATION_COMMAND) {
     switch (message.data.name) {
       case AVAILABLE_COMMANDS.name: {
-        if (message.data.name === "질문") {
+        if (message.data.name === process.env.COMMAND_NAME) {
           const client = new LambdaClient({});
           await client.send(
             new InvokeCommand({

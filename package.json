@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "register": "ts-node register.ts",
+    "deploy" : "ts-node register.ts && serverless deploy",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },
