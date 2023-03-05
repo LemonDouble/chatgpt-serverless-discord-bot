@@ -82,14 +82,15 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/31124212/222872631-41bee138-7565-4dad-b38f-1d07a1a2482e.png">
 <p>
+
 - 디스코드 서버에 별도로 Slash Command를 등록해야, 채팅창에 `/`를 입력했을 때 위와 같은 커맨드가 등록되게 됩니다.
 - 리포지토리에서 `npm install --global yarn` 커맨드를 입력해 yarn을 설치해 주세요.
 - 이후 `yarn install`을 입력하여 관련 라이브러리를 설치해 주세요.
-- 이후 `yarn register`를 입력하여, 커맨드를 등록해 주세요.
-- Registered all commands 가 떴다면, 올바르게 설정된 겁니다!
+- 이후, `.env` 파일을 수정하여 주세요. 위 사진에서 `질문` 은 Command에, `내용` 은 Options에 대응됩니다.  
+- 이후 `yarn deploy`를 입력하여, 커맨드를 등록해 주세요.
   
 **8. 완료**
-- `/질문` 커맨드를 이용하여 ChatGPT와 대화해 보세요!
+- 봇을 초대하고, 위에서 등록한 `/Command` 를 이용해 봇과 대화해 보세요!
 
 ### FAQ
 
@@ -104,15 +105,9 @@
     ```
   - 수정을 완료했다면, `serverless deploy`를 입력하여 서버를 업데이트합니다.
 - **슬래시 커맨드를 수정하고 싶어요!**
-  - src/commands.ts에 들어가서, AVAILABLE_COMMANDS 를 수정합니다. **설정 방법** 의 슬래시 커맨드 등록 부분과 비교하며 글자를 수정해 보세요.
-  - 이후 `yarn register`를 입력하여, 수정된 Slash Command를 등록합니다.
-  - 이후, 만약 "질문" 부분을 수정했다면 handler.ts를 수정한 커맨드에 맞게 수정해 줍니다.
-  ```
-  if (message.data.name === "질문") { // << 54번 라인의 이 부분
-  const question = message.data.options[0].value;
-  ```
-  - 이후 `serverless deploy` 를 입력하여 서버를 업데이트합니다.
-  - 더 자세한 커스터마이징을 원하면, 관련 문서를 참고해 주세요.
+  - .env.example에서 `COMMAND_NAME`, `COMMAND_DESCRIPTION`, `OPTION_NAME`, `OPTION_DESCRIPTION` 을 수정합니다.
+  - 이후 `yarn deploy`를 입력하여, 수정된 Slash Command를 등록하고 서버를 업데이트합니다.
+  - 더 자세한 커스터마이징을 원하면, 관련 문서를 참고해 직접 커스터마이징 해 주세요. `src/commands.ts`, `src/proxy/handler.ts`를 수정하면 됩니다.
   - 관련 문서 (Discord Interactions) : https://discord.com/developers/docs/interactions/receiving-and-responding
 - **애플리케이션이 응답하지 않았어요** 가 떠요!
   - 서버 응답 시간이 한번씩 느려지면 그럴 수 있습니다.
@@ -146,3 +141,4 @@
 
 * v0.0.1 : 기본 API 및 응답 구현
 * v0.1.1 : 3초 이상 걸리는 Response도 정상 응답 가능하도록, Multi Layer Architecture로 변경
+* v0.1.2 : Slash Command 커스터마이즈 지원

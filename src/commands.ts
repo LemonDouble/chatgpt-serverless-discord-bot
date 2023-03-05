@@ -1,11 +1,14 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 export const AVAILABLE_COMMANDS = {
-  name: "질문",
-  description: "디스코드 봇에게 질문을 합니다.",
+  name: process.env.COMMAND_NAME,
+  description: process.env.COMMAND_DESCRIPTION,
   options: [
     {
-      name: "내용",
-      description: "질문 내용을 적어주세요.",
-      type: 3,
+      name: process.env.OPTION_NAME,
+      description: process.env.OPTION_DESCRIPTION,
+      type: 3, // String, https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-type
       required: true,
     },
   ],
