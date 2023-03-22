@@ -109,9 +109,9 @@
   - 이후 `yarn deploy`를 입력하여, 수정된 Slash Command를 등록하고 서버를 업데이트합니다.
   - 더 자세한 커스터마이징을 원하면, 관련 문서를 참고해 직접 커스터마이징 해 주세요. `src/commands.ts`, `src/proxy/handler.ts`를 수정하면 됩니다.
   - 관련 문서 (Discord Interactions) : https://discord.com/developers/docs/interactions/receiving-and-responding
-- **애플리케이션이 응답하지 않았어요** 가 떠요!
-  - 서버 응답 시간이 한번씩 느려지면 그럴 수 있습니다.
-  - 별도로 문제가 있는 것은 아니니, 재시도하면 정상 작동합니다.
+- **봇을 여러 개 만들고 싶어요!**
+  - 이 리포지토리를 클론한 후, serverless.yml 파일에서 `provider.stage` 부분을 변경하면 Lambda 함수 이름 충돌이 나지 않습니다.
+  - Stage만 변경해서 여러 봇을 배포해 보세요!
 
 ### 프로젝트 구조
 
@@ -142,3 +142,4 @@
 * v0.0.1 : 기본 API 및 응답 구현
 * v0.1.1 : 3초 이상 걸리는 Response도 정상 응답 가능하도록, Multi Layer Architecture로 변경
 * v0.1.2 : Slash Command 커스터마이즈 지원
+* v0.1.3 : Stage를 환경 변수로 주입하여 여러 봇 배포하기 편하도록 수정
