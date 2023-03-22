@@ -59,8 +59,7 @@ export const handle = async (
           const client = new LambdaClient({});
           await client.send(
             new InvokeCommand({
-              FunctionName:
-                "chatgpt-serverless-discord-bot-dev-openai-response",
+              FunctionName: `chatgpt-serverless-discord-bot-${process.env.STAGE}-openai-response`,
               InvocationType: InvocationType.Event,
               Payload: Buffer.from(
                 JSON.stringify({
