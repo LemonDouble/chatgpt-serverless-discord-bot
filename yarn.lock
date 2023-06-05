@@ -2411,10 +2411,10 @@ serverless-dotenv-plugin@^6.0.0:
     dotenv "^16.0.3"
     dotenv-expand "^10.0.0"
 
-serverless-plugin-typescript@^2.1.4:
-  version "2.1.4"
-  resolved "https://registry.npmjs.org/serverless-plugin-typescript/-/serverless-plugin-typescript-2.1.4.tgz"
-  integrity sha512-6+IHXlsDydwDu+3ZhJiWyaFsfAoHbXdFGk10RJjipFYW+KLIoGMAxazXeiq0YQtC7uJYOtfYtGM1PtNjxOXAJg==
+serverless-plugin-typescript@^2.1.5:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/serverless-plugin-typescript/-/serverless-plugin-typescript-2.1.5.tgz#d4c4636ee6e4803d2fe773ce2bb8bf52362c836d"
+  integrity sha512-7OO6eJzv57dvfz0v9huU1JVBgdzgvvz+6GCwwkR2bfdVHKs1tifx+fSgjbQcBpXNNHf8Dx2Mo7evtYTkA/TDDA==
   dependencies:
     fs-extra "^7.0.1"
     globby "^10.0.2"
