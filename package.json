@@ -12,7 +12,7 @@
     "lint:fix": "eslint --fix ."
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.117",
+    "@types/aws-lambda": "^8.10.119",
     "@types/node": "^20.3.0",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "eslint": "^8.42.0",
