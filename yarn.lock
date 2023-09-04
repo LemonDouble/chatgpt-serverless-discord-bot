@@ -2675,10 +2675,10 @@ open@^9.1.0:
     is-inside-container "^1.0.0"
     is-wsl "^2.2.0"
 
-openai@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/openai/-/openai-4.3.0.tgz#e12320015be7b86469304318ccf9a34e3d81a4df"
-  integrity sha512-ObF5jxvZoQbCNAI6FiiNkzFDinBRbu4KPm73/PKCy9UvjI24kPpnN9kK56rtPDVYxfk78C0A2SK0bJAE633BuQ==
+openai@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/openai/-/openai-4.4.0.tgz#dbaab326eb044ddec479951b245850c482678031"
+  integrity sha512-JN0t628Kh95T0IrXl0HdBqnlJg+4Vq0Bnh55tio+dfCnyzHvMLiWyCM9m726MAJD2YkDU4/8RQB6rNbEq9ct2w==
   dependencies:
     "@types/node" "^18.11.18"
     "@types/node-fetch" "^2.6.4"
