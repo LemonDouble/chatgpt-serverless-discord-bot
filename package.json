@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.119",
-    "@types/node": "^20.6.0",
+    "@types/node": "^20.6.2",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
