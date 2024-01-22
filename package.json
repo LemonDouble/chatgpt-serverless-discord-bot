@@ -29,7 +29,7 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@aws-sdk/client-lambda": "^3.490.0",
+    "@aws-sdk/client-lambda": "^3.496.0",
     "axios": "^1.6.5",
     "discord-interactions": "^3.4.0",
     "dotenv": "^16.3.1",
