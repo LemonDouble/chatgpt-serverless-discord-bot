@@ -32,7 +32,7 @@
     "@aws-sdk/client-lambda": "^3.516.0",
     "axios": "^1.6.7",
     "discord-interactions": "^3.4.0",
-    "dotenv": "^16.4.2",
+    "dotenv": "^16.4.4",
     "openai": "^4.28.0",
     "tweetnacl": "^1.0.3"
   }
