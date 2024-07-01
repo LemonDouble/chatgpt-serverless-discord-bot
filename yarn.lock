@@ -1553,12 +1553,10 @@ dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
-discord-interactions@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/discord-interactions/-/discord-interactions-3.4.0.tgz#ea24c0c9076ea87f501a04ce94c8b91421642a18"
-  integrity sha512-DG0Jxdd/FcK8liAPhIP4u5YHpnz50JWn9DK4OavxsLD49/WGimXtP3EdOY439MaWyCgQfsfFkA1GsTEyu63RzA==
-  dependencies:
-    tweetnacl "^1.0.3"
+discord-interactions@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/discord-interactions/-/discord-interactions-4.0.0.tgz#0523737bbccaba38e46c409d494ba036177cc380"
+  integrity sha512-27HSJ379W9E4T6Or+efQRGnekJ6g8kYokSFtK5HKc/3ObC+83O+vxdg2trStD/2XPIHVPMNVIoZAeK9s/EL8Yg==
 
 doctrine@^2.1.0:
   version "2.1.0"
