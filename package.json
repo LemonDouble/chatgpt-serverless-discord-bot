@@ -33,7 +33,7 @@
     "axios": "^1.7.2",
     "discord-interactions": "^3.4.0",
     "dotenv": "^16.4.5",
-    "openai": "^4.52.2",
+    "openai": "^4.52.3",
     "tweetnacl": "^1.0.3"
   }
 }
